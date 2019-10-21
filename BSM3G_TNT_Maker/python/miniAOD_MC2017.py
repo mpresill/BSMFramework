@@ -1,24 +1,38 @@
 import FWCore.ParameterSet.Config as cms
-import FWCore.ParameterSet.VarParsing as VarParsing
-import copy
-from PhysicsTools.PatAlgos.patEventContent_cff import patEventContent
-options = VarParsing.VarParsing('analysis')
-# ===== Register new variables =====
+import FWCore.ParameterSet.VarParsing as VarParsing
+
+import copy
+
+from PhysicsTools.PatAlgos.patEventContent_cff import patEventContent
+
+options = VarParsing.VarParsing('analysis')
+
+# ===== Register new variables =====
+
 options.register('optionlepfilt',
 0,
 VarParsing.VarParsing.multiplicity.singleton,
 VarParsing.VarParsing.varType.int,
 "Minimum number of leptons")
 
-options.register('ofName',
-'sentinel_output_name',
-VarParsing.VarParsing.multiplicity.singleton,
-VarParsing.VarParsing.varType.string,
-"Name for output file."
-)
-# ===== Get & parse any command line arguments =====
-options.parseArguments()
-
+options.register('ofName',
+
+'',
+
+VarParsing.VarParsing.multiplicity.singleton,
+
+VarParsing.VarParsing.varType.string,
+
+"Name for output file."
+
+)
+
+# ===== Get & parse any command line arguments =====
+
+options.parseArguments()
+
+
+
 #####
 ##   Initial standard configs
 #####
@@ -50,14 +64,19 @@ process.source = cms.Source("PoolSource",
 process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(1) )
 
 ##### JEC
-from PhysicsTools.PatAlgos.tools.jetTools import updateJetCollection
-updateJetCollection(
-  process,
-  jetSource = cms.InputTag('slimmedJets'),
+from PhysicsTools.PatAlgos.tools.jetTools import updateJetCollection
+
+updateJetCollection(
+
+  process,
+
+  jetSource = cms.InputTag('slimmedJets'),
+
   pvSource = cms.InputTag('offlineSlimmedPrimaryVertices'),
   svSource = cms.InputTag('slimmedSecondaryVertices'),
   #labelName = 'UpdatedJEC',
-  jetCorrections = ('AK4PFchs', cms.vstring(['L1FastJet','L2Relative','L3Absolute']), 'None'),
+  jetCorrections = ('AK4PFchs', cms.vstring(['L1FastJet','L2Relative','L3Absolute']), 'None'),
+
   btagDiscriminators = [
      'pfDeepFlavourJetTags:probb',
      'pfDeepFlavourJetTags:probbb',
