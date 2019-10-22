@@ -29,7 +29,7 @@ git cms-merge-topic cms-egamma:slava77-btvDictFix_10210 #fixes the Run2018D dict
 #now to add the scale and smearing for 2018 (eventually this will not be necessary in later releases but is harmless to do regardless)
 git cms-addpkg EgammaAnalysis/ElectronTools
 rm EgammaAnalysis/ElectronTools/data -rf
-git clone git@github.com:cms-data/EgammaAnalysis-ElectronTools.git EgammaAnalysis/ElectronTools/data
+git clone https://github.com/cms-data/EgammaAnalysis-ElectronTools.git EgammaAnalysis/ElectronTools/data
 #now build everything
 scram b -j 8
          
