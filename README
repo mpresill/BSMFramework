@@ -55,7 +55,7 @@ git cms-merge-topic 28098
 scram b -j 4
 
 ## set BSM Framework
-git clone https://github.com/BinghuanLi/BSMFramework.git
+git clone git@github.com:mpresill/BSMFramework.git
 cd BSMFramework/
 git checkout HN17
 cd ..
@@ -63,11 +63,13 @@ scram b -j 8
 
 ## To Run ##
 cd BSMFramework/BSM3G_TNT_Maker/python/
-cmsRun miniAOD_MC(RD)2017(2016)(2018).py 
+#cmsRun miniAOD_MC(RD)2017(2016)(2018).py 
+cmsRun miniAOD_MC2017.py
 
 ## To Submit Crab jobs ###
 cd BSMFramework/BSM3G_TNT_Maker/crab/
-python multicrab_MC(DATA)2016(2017)(2018).py
+#python multicrab_MC(DATA)2016(2017)(2018).py
+python multicrab_MC2017.py
 
 ## Notice ###
 - Use < crab status -d > instead of TaskMonitors to check job information 
