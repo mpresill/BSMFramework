@@ -1,0 +1,59 @@
+DEBUG 2019-10-22 13:43:37.351 UTC: 	 Running on: Linux lxplus764.cern.ch 3.10.0-1062.1.1.el7.x86_64 #1 SMP Fri Sep 13 22:55:44 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+Description:	CentOS Linux release 7.7.1908 (Core) 
+
+DEBUG 2019-10-22 13:43:37.351 UTC: 	 Executing command: 'status'
+DEBUG 2019-10-22 13:43:37.351 UTC: 	 Found CRAB cache file /afs/cern.ch/user/m/mpresill/.crab3
+ERROR 2019-10-22 13:43:37.355 UTC: 	 Cannot find .requestcache file in CRAB project directory /afs/cern.ch/work/m/mpresill/CMSSW_10_2_16_UL/src/BSMFramework/BSM3G_TNT_Maker/crab/crab_projects_17/crab_Fall17V2_SaT
+ERROR 2019-10-22 13:43:37.355 UTC: 	 Caught exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/crab3/slc7_amd64_gcc630/cms/crabclient/3.3.1910.patch1/bin/crab", line 160, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/crab3/slc7_amd64_gcc630/cms/crabclient/3.3.1910.patch1/bin/crab", line 145, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/crab3/slc7_amd64_gcc630/cms/crabclient/3.3.1910.patch1/lib/python2.7/site-packages/CRABClient/Commands/status.py", line 40, in __init__
+    SubCommand.__init__(self, logger, cmdargs)
+  File "/cvmfs/cms.cern.ch/crab3/slc7_amd64_gcc630/cms/crabclient/3.3.1910.patch1/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 262, in __init__
+    SubCommand.validateOptions(self)
+  File "/cvmfs/cms.cern.ch/crab3/slc7_amd64_gcc630/cms/crabclient/3.3.1910.patch1/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 584, in validateOptions
+    self.loadLocalCache()
+  File "/cvmfs/cms.cern.ch/crab3/slc7_amd64_gcc630/cms/crabclient/3.3.1910.patch1/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 446, in loadLocalCache
+    raise ex
+CachefileNotFoundException: Cannot find .requestcache file in CRAB project directory /afs/cern.ch/work/m/mpresill/CMSSW_10_2_16_UL/src/BSMFramework/BSM3G_TNT_Maker/crab/crab_projects_17/crab_Fall17V2_SaT
+DEBUG 2019-10-22 13:44:06.538 UTC: 	 Running on: Linux lxplus764.cern.ch 3.10.0-1062.1.1.el7.x86_64 #1 SMP Fri Sep 13 22:55:44 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+Description:	CentOS Linux release 7.7.1908 (Core) 
+
+DEBUG 2019-10-22 13:44:06.538 UTC: 	 Executing command: 'status'
+DEBUG 2019-10-22 13:44:06.539 UTC: 	 Found CRAB cache file /afs/cern.ch/user/m/mpresill/.crab3
+ERROR 2019-10-22 13:44:06.540 UTC: 	 Error: crab_projects_17/crab_Fall17V2_TT is not a valid CRAB project directory.
+ERROR 2019-10-22 13:44:06.540 UTC: 	 Caught exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/crab3/slc7_amd64_gcc630/cms/crabclient/3.3.1910.patch1/bin/crab", line 160, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/crab3/slc7_amd64_gcc630/cms/crabclient/3.3.1910.patch1/bin/crab", line 145, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/crab3/slc7_amd64_gcc630/cms/crabclient/3.3.1910.patch1/lib/python2.7/site-packages/CRABClient/Commands/status.py", line 40, in __init__
+    SubCommand.__init__(self, logger, cmdargs)
+  File "/cvmfs/cms.cern.ch/crab3/slc7_amd64_gcc630/cms/crabclient/3.3.1910.patch1/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 262, in __init__
+    SubCommand.validateOptions(self)
+  File "/cvmfs/cms.cern.ch/crab3/slc7_amd64_gcc630/cms/crabclient/3.3.1910.patch1/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 580, in validateOptions
+    raise ConfigurationException(msg)
+ConfigurationException: [91mError[0m: crab_projects_17/crab_Fall17V2_TT is not a valid CRAB project directory.
+DEBUG 2019-10-22 13:44:15.655 UTC: 	 Running on: Linux lxplus764.cern.ch 3.10.0-1062.1.1.el7.x86_64 #1 SMP Fri Sep 13 22:55:44 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+Description:	CentOS Linux release 7.7.1908 (Core) 
+
+DEBUG 2019-10-22 13:44:15.655 UTC: 	 Executing command: 'status'
+DEBUG 2019-10-22 13:44:15.655 UTC: 	 Found CRAB cache file /afs/cern.ch/user/m/mpresill/.crab3
+ERROR 2019-10-22 13:44:15.657 UTC: 	 Error: crab_projects_17/crab_Fall17V2_SaT is not a valid CRAB project directory.
+ERROR 2019-10-22 13:44:15.657 UTC: 	 Caught exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/crab3/slc7_amd64_gcc630/cms/crabclient/3.3.1910.patch1/bin/crab", line 160, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/crab3/slc7_amd64_gcc630/cms/crabclient/3.3.1910.patch1/bin/crab", line 145, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/crab3/slc7_amd64_gcc630/cms/crabclient/3.3.1910.patch1/lib/python2.7/site-packages/CRABClient/Commands/status.py", line 40, in __init__
+    SubCommand.__init__(self, logger, cmdargs)
+  File "/cvmfs/cms.cern.ch/crab3/slc7_amd64_gcc630/cms/crabclient/3.3.1910.patch1/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 262, in __init__
+    SubCommand.validateOptions(self)
+  File "/cvmfs/cms.cern.ch/crab3/slc7_amd64_gcc630/cms/crabclient/3.3.1910.patch1/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 580, in validateOptions
+    raise ConfigurationException(msg)
+ConfigurationException: [91mError[0m: crab_projects_17/crab_Fall17V2_SaT is not a valid CRAB project directory.
