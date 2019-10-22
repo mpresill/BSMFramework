@@ -8,7 +8,7 @@ if __name__ == '__main__':
  from CRABAPI.RawCommand import crabCommand
  from CRABClient.ClientExceptions import ClientException
  from httplib import HTTPException
- config.General.workArea = 'Crab_projects'
+ config.General.workArea = 'crab_projects_17'
 
  def submit(config):
   try:
@@ -275,31 +275,38 @@ if __name__ == '__main__':
 #'/HavyCompositeMajoranaNeutrino_L20000_M8000_mumujj_CalcHep/RunIIFall17MiniAODv2-PU2017_12Apr2018_94X_mc2017_realistic_v14-v1/MINIAODSIM',
                 ] 
  
- 
+ baseDir = "/afs/cern.ch/work/m/mpresill/CMSSW_10_2_16_UL/src/BSMFramework/BSM3G_TNT_Maker/"
+
 for d in range(0,len(datasetnames)):
-#for d in [17,24]:
+#for d in range(0,1):
     print 'multicrab.py: Running datasetname: ', datasetnames[d]
 
+    lepFilt = 1
+    nameLepFilt = 'optionlepfilt={}'.format(lepFilt)
     config.section_('General')
     config.General.requestName = datasetnames[d]
-    config.General.workArea    = datasetnames[d]
+    #config.General.workArea    = datasetnames[d]
     config.General.transferLogs = True
 
     config.section_('JobType')
     config.JobType.pluginName  = 'Analysis'
     # List of parameters to pass to CMSSW parameter-set configuration file:
-    config.JobType.psetName    = '/afs/cern.ch/work/m/mpresill/CMSSW_10_2_16_UL/src/BSMFramework/BSM3G_TNT_Maker/python/miniAOD_MC2017.py'
+    config.JobType.psetName    = baseDir+'BSM3G_TNT_Maker/python/miniAOD_MC2017.py'
+    config.JobType.inputFiles = [(baseDir+'BSM3G_TNT_Maker/data/QG/QGL_AK4chs_94X.db')]
     config.JobType.sendExternalFolder = True
     config.JobType.maxMemoryMB = 2000 # Default == 2Gb : maximum guaranteed to run on all sites
     #config.JobType.allowUndistributedCMSSW = True
     ofParam = 'ofName=' + datasetnames[d]
-    config.JobType.pyCfgParams = [ofParam]
+    config.JobType.pyCfgParams = [nameLepFilt,
+                                    ofParam]
     config.section_('Data')
+    config.General.instance = 'prod'
     config.Data.allowNonValidInputDataset = True
     config.Data.inputDataset   = datasetinputs[d]
     config.Data.inputDBS       = 'global'
     config.Data.splitting      = 'FileBased'
-    config.Data.totalUnits     = 40000 #With 'FileBased' splitting tells how many files to analyse
+    #config.Data.splitting      = 'Automatic'
+    config.Data.totalUnits     = 4000 #With 'FileBased' splitting tells how many files to analyse
     config.Data.unitsPerJob    = 1
     config.Data.outputDatasetTag = datasetnames[d]
 
