@@ -219,7 +219,7 @@ for d in range(0,len(datasetnames)):
     config.JobType.pluginName  = 'Analysis'
     # List of parameters to pass to CMSSW parameter-set configuration file:
     config.JobType.psetName    = '/afs/cern.ch/work/m/mpresill/CMSSW_10_2_16_UL/src/BSMFramework/BSM3G_TNT_Maker/python/miniAOD_RD2017.py'
-    config.JobType.inputFiles = ['/afs/cern.ch/work/m/mpresill/CMSSW_10_2_16_UL/src/BSMFramework/BSM3G_TNT_Maker/data/L1Prefire/L1PrefiringMaps_new.root']
+    config.JobType.inputFiles = ['/afs/cern.ch/work/m/mpresill/CMSSW_10_2_16_UL/src/BSMFramework/BSM3G_TNT_Maker/data/QG/QGL_AK4chs_94X.db']
     config.JobType.allowUndistributedCMSSW = True
     config.JobType.sendExternalFolder = True
     ofParam = 'ofName=' + datasetnames[d]
