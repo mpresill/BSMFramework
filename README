@@ -67,6 +67,7 @@ cd BSMFramework/BSM3G_TNT_Maker/python/
 cmsRun miniAOD_MC2017.py
 
 ## To Submit Crab jobs ###
+#source /cvmfs/cms.cern.ch/crab3/crab.sh
 cd BSMFramework/BSM3G_TNT_Maker/crab/
 #python multicrab_MC(DATA)2016(2017)(2018).py
 python multicrab_MC2017.py
