@@ -275,7 +275,7 @@ if __name__ == '__main__':
 #'/HavyCompositeMajoranaNeutrino_L20000_M8000_mumujj_CalcHep/RunIIFall17MiniAODv2-PU2017_12Apr2018_94X_mc2017_realistic_v14-v1/MINIAODSIM',
                 ] 
  
- baseDir = "/afs/cern.ch/work/m/mpresill/CMSSW_10_2_16_UL/src/BSMFramework/BSM3G_TNT_Maker/"
+ baseDir = "/afs/cern.ch/work/m/mpresill/CMSSW_10_2_16_UL/src/BSMFramework/"
 
 for d in range(0,len(datasetnames)):
 #for d in range(0,1):
