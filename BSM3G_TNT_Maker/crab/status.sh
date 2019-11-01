@@ -1,13 +1,13 @@
-crab status -d Fall17V1_SEleBlockB/crab_Fall17V1_SEleBlockB
-crab status -d Fall17V1_SEleBlockC/crab_Fall17V1_SEleBlockC
-crab status -d Fall17V1_SEleBlockD/crab_Fall17V1_SEleBlockD
-crab status -d Fall17V1_SEleBlockE/crab_Fall17V1_SEleBlockE
-crab status -d Fall17V1_SEleBlockF/crab_Fall17V1_SEleBlockF
-crab status -d Fall17V1_SMuBlockB/crab_Fall17V1_SMuBlockB
-crab status -d Fall17V1_SMuBlockC/crab_Fall17V1_SMuBlockC
-crab status -d Fall17V1_SMuBlockD/crab_Fall17V1_SMuBlockD
-crab status -d Fall17V2_SMuBlockE/crab_Fall17V2_SMuBlockE
-crab status -d Fall17V2_SMuBlockF/crab_Fall17V2_SMuBlockF
+crab status -d 
+crab status -d 
+crab status -d 
+crab status -d 
+crab status -d 
+crab status -d 
+crab status -d 
+crab status -d 
+crab status -d 
+crab status -d 
 
 crab status -d crab_projects_17/crab_Fall17V2_DY1
 crab status -d crab_projects_17/crab_Fall17V2_DY2
