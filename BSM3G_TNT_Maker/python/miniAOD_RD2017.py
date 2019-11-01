@@ -1,128 +1,237 @@
 import FWCore.ParameterSet.Config as cms
-import FWCore.ParameterSet.VarParsing as VarParsing
-import copy
-from PhysicsTools.PatAlgos.patEventContent_cff import patEventContent
-
-options = VarParsing.VarParsing('analysis')
-# Variables one can control from the multicrab configuration file.
-# When connecting a variable you need to tell the module certain information
-# about the object.
-#                   - Object name.
-#                   - Default value.
-#                   - Is object a single number or a list.
-#                   - Object type.
-#                   - Details of object.
-#
-
-# ===== Register new variables =====
-options.register('optionJECAK4PFchsDATA1',
+import FWCore.ParameterSet.VarParsing as VarParsing
+
+import copy
+
+from PhysicsTools.PatAlgos.patEventContent_cff import patEventContent
+
+
+
+options = VarParsing.VarParsing('analysis')
+
+# Variables one can control from the multicrab configuration file.
+
+# When connecting a variable you need to tell the module certain information
+
+# about the object.
+
+#                   - Object name.
+
+#                   - Default value.
+
+#                   - Is object a single number or a list.
+
+#                   - Object type.
+
+#                   - Details of object.
+
+#
+
+
+
+# ===== Register new variables =====
+
+options.register('optionJECAK4PFchsDATA1',
+
 'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_L1FastJet_AK4PFchs.txt',
-VarParsing.VarParsing.multiplicity.singleton,
-VarParsing.VarParsing.varType.string,
-"Name for AK4PFchsDATA1 JEC file")
-
-options.register('optionJECAK4PFchsDATA2',
+VarParsing.VarParsing.multiplicity.singleton,
+
+VarParsing.VarParsing.varType.string,
+
+"Name for AK4PFchsDATA1 JEC file")
+
+
+
+options.register('optionJECAK4PFchsDATA2',
+
 'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_L2Relative_AK4PFchs.txt',
-VarParsing.VarParsing.multiplicity.singleton,
-VarParsing.VarParsing.varType.string,
-"Name for AK4PFchsDATA2 JEC file"
-)
-options.register('optionJECAK4PFchsDATA3',
+VarParsing.VarParsing.multiplicity.singleton,
+
+VarParsing.VarParsing.varType.string,
+
+"Name for AK4PFchsDATA2 JEC file"
+
+)
+
+options.register('optionJECAK4PFchsDATA3',
+
 'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_L3Absolute_AK4PFchs.txt',
-VarParsing.VarParsing.multiplicity.singleton,
-VarParsing.VarParsing.varType.string,
-"Name for AK4PFchsDATA3 JEC file"
-)
-options.register('optionJECAK4PFchsDATA4',
+VarParsing.VarParsing.multiplicity.singleton,
+
+VarParsing.VarParsing.varType.string,
+
+"Name for AK4PFchsDATA3 JEC file"
+
+)
+
+options.register('optionJECAK4PFchsDATA4',
+
 'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_L2L3Residual_AK4PFchs.txt',
-VarParsing.VarParsing.multiplicity.singleton,
-VarParsing.VarParsing.varType.string,
-"Name for AK4PFchsDATA4 JEC file"
-)
-options.register('optionJECAK4PFchsDATAUnc',
+VarParsing.VarParsing.multiplicity.singleton,
+
+VarParsing.VarParsing.varType.string,
+
+"Name for AK4PFchsDATA4 JEC file"
+
+)
+
+options.register('optionJECAK4PFchsDATAUnc',
+
 'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_Uncertainty_AK4PFchs.txt',
-VarParsing.VarParsing.multiplicity.singleton,
-VarParsing.VarParsing.varType.string,
-"Name for AK4PFchsDATAUnc JEC file"
-)
-
-
-options.register('optionJECAK4PFPuppiDATA1',
+VarParsing.VarParsing.multiplicity.singleton,
+
+VarParsing.VarParsing.varType.string,
+
+"Name for AK4PFchsDATAUnc JEC file"
+
+)
+
+
+
+
+
+options.register('optionJECAK4PFPuppiDATA1',
+
 'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_L1FastJet_AK4PFPuppi.txt',
-VarParsing.VarParsing.multiplicity.singleton,
-VarParsing.VarParsing.varType.string,
-"Name for AK4PFPuppiDATA1 JEC file"
-)
-options.register('optionJECAK4PFPuppiDATA2',
+VarParsing.VarParsing.multiplicity.singleton,
+
+VarParsing.VarParsing.varType.string,
+
+"Name for AK4PFPuppiDATA1 JEC file"
+
+)
+
+options.register('optionJECAK4PFPuppiDATA2',
+
 'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_L2Relative_AK4PFPuppi.txt',
-VarParsing.VarParsing.multiplicity.singleton,
-VarParsing.VarParsing.varType.string,
-"Name for AK4PFPuppiDATA2 JEC file"
-)
-options.register('optionJECAK4PFPuppiDATA3',
+VarParsing.VarParsing.multiplicity.singleton,
+
+VarParsing.VarParsing.varType.string,
+
+"Name for AK4PFPuppiDATA2 JEC file"
+
+)
+
+options.register('optionJECAK4PFPuppiDATA3',
+
 'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_L3Absolute_AK4PFPuppi.txt',
-VarParsing.VarParsing.multiplicity.singleton,
-VarParsing.VarParsing.varType.string,
-"Name for AK4PFPuppiDATA3 JEC file"
-)
-options.register('optionJECAK4PFPuppiDATA4',
+VarParsing.VarParsing.multiplicity.singleton,
+
+VarParsing.VarParsing.varType.string,
+
+"Name for AK4PFPuppiDATA3 JEC file"
+
+)
+
+options.register('optionJECAK4PFPuppiDATA4',
+
 'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_L2L3Residual_AK4PFPuppi.txt',
-VarParsing.VarParsing.multiplicity.singleton,
-VarParsing.VarParsing.varType.string,
-"Name for AK4PFPuppiDATA4 JEC file"
-)
-options.register('optionJECAK4PFPuppiDATAUnc',
+VarParsing.VarParsing.multiplicity.singleton,
+
+VarParsing.VarParsing.varType.string,
+
+"Name for AK4PFPuppiDATA4 JEC file"
+
+)
+
+options.register('optionJECAK4PFPuppiDATAUnc',
+
 'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_Uncertainty_AK4PFPuppi.txt',
-VarParsing.VarParsing.multiplicity.singleton,
-VarParsing.VarParsing.varType.string,
-"Name for AK4PFPuppiDATAUnc JEC file"
-)
-
-
-
-options.register('optionJECAK8PFchsDATA1',
+VarParsing.VarParsing.multiplicity.singleton,
+
+VarParsing.VarParsing.varType.string,
+
+"Name for AK4PFPuppiDATAUnc JEC file"
+
+)
+
+
+
+
+
+
+
+options.register('optionJECAK8PFchsDATA1',
+
 'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_L1FastJet_AK8PFchs.txt',
-VarParsing.VarParsing.multiplicity.singleton,
-VarParsing.VarParsing.varType.string,
-"Name for AK8PFchsDATA1 JEC file"
-)
-options.register('optionJECAK8PFchsDATA2',
+VarParsing.VarParsing.multiplicity.singleton,
+
+VarParsing.VarParsing.varType.string,
+
+"Name for AK8PFchsDATA1 JEC file"
+
+)
+
+options.register('optionJECAK8PFchsDATA2',
+
 'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_L2Relative_AK8PFchs.txt',
-VarParsing.VarParsing.multiplicity.singleton,
-VarParsing.VarParsing.varType.string,
-"Name for AK8PFchsDATA2 JEC file"
-)
-options.register('optionJECAK8PFchsDATA3',
+VarParsing.VarParsing.multiplicity.singleton,
+
+VarParsing.VarParsing.varType.string,
+
+"Name for AK8PFchsDATA2 JEC file"
+
+)
+
+options.register('optionJECAK8PFchsDATA3',
+
 'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_L3Absolute_AK8PFchs.txt',
-VarParsing.VarParsing.multiplicity.singleton,
-VarParsing.VarParsing.varType.string,
-"Name for AK8PFchsDATA3 JEC file"
-)
-options.register('optionJECAK8PFchsDATA4',
+VarParsing.VarParsing.multiplicity.singleton,
+
+VarParsing.VarParsing.varType.string,
+
+"Name for AK8PFchsDATA3 JEC file"
+
+)
+
+options.register('optionJECAK8PFchsDATA4',
+
 'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_L2L3Residual_AK8PFchs.txt',
-VarParsing.VarParsing.multiplicity.singleton,
-VarParsing.VarParsing.varType.string,
-"Name for AK8PFchsDATA4 JEC file"
-)
-options.register('optionJECAK8PFchsDATAUnc',
+VarParsing.VarParsing.multiplicity.singleton,
+
+VarParsing.VarParsing.varType.string,
+
+"Name for AK8PFchsDATA4 JEC file"
+
+)
+
+options.register('optionJECAK8PFchsDATAUnc',
+
 'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_Uncertainty_AK8PFchs.txt',
-VarParsing.VarParsing.multiplicity.singleton,
-VarParsing.VarParsing.varType.string,
-"Name for AK8PFchsDATAUnc JEC file"
-)
-
-options.register('ofName',
-'sentinel_output_name',
-VarParsing.VarParsing.multiplicity.singleton,
-VarParsing.VarParsing.varType.string,
-"Name for output file."
-)
-
-
-# ===== Get & parse any command line arguments =====
-options.parseArguments()
-
-
+VarParsing.VarParsing.multiplicity.singleton,
+
+VarParsing.VarParsing.varType.string,
+
+"Name for AK8PFchsDATAUnc JEC file"
+
+)
+
+
+
+options.register('ofName',
+
+'sentinel_output_name',
+
+VarParsing.VarParsing.multiplicity.singleton,
+
+VarParsing.VarParsing.varType.string,
+
+"Name for output file."
+
+)
+
+
+
+
+
+# ===== Get & parse any command line arguments =====
+
+options.parseArguments()
+
+
+
+
+
 #####
 ##   Initial standard configs
 #####
@@ -151,14 +260,19 @@ process.source = cms.Source("PoolSource",
 process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
 
 ##### JEC
-from PhysicsTools.PatAlgos.tools.jetTools import updateJetCollection
-updateJetCollection(
-  process,
-  jetSource = cms.InputTag('slimmedJets'),
+from PhysicsTools.PatAlgos.tools.jetTools import updateJetCollection
+
+updateJetCollection(
+
+  process,
+
+  jetSource = cms.InputTag('slimmedJets'),
+
   pvSource = cms.InputTag('offlineSlimmedPrimaryVertices'),
   svSource = cms.InputTag('slimmedSecondaryVertices'),
   #labelName = 'UpdatedJEC',
-  jetCorrections = ('AK4PFchs', cms.vstring(['L1FastJet','L2Relative','L3Absolute','L2L3Residual']), 'None'),
+  jetCorrections = ('AK4PFchs', cms.vstring(['L1FastJet','L2Relative','L3Absolute','L2L3Residual']), 'None'),
+
   btagDiscriminators = [
      'pfDeepFlavourJetTags:probb',
      'pfDeepFlavourJetTags:probbb',
@@ -265,7 +379,8 @@ process.ecalBadCalibReducedMINIAODFilter = cms.EDFilter(
 #####
 ##   Output file
 #####
-options.ofName += ".root"
+options.ofName += ".root"
+
 process.TFileService = cms.Service("TFileService",
   #fileName = cms.string("OutTree.root")
   fileName = cms.string("OutTree.root")
@@ -345,7 +460,7 @@ process.TNT = cms.EDAnalyzer("BSM3G_TNT_Maker",
   filltauinfo           = cms.bool(True),
   filljetinfo           = cms.bool(True),
   filltthjetinfo        = cms.bool(False), #F
-  fillBoostedJetinfo    = cms.bool(True),
+  fillBoostedJetinfo    = cms.bool(False),
   fillTopSubJetinfo     = cms.bool(False), #F
   fillTauJetnessinfo    = cms.bool(False),
   fillBJetnessinfo      = cms.bool(False),
@@ -357,7 +472,7 @@ process.TNT = cms.EDAnalyzer("BSM3G_TNT_Maker",
   # Choose format 
   MiniAODv2 = cms.bool(True),
   is_data   = cms.bool(True),
-  lepfilter   = cms.int32(0), # at least #lepfilter lepton : muon: CutBaseLoose , Electron : pt/eta
+  lepfilter   = cms.int32(2), # at least #lepfilter lepton : muon: CutBaseLoose , Electron : pt/eta
   reHLT     = cms.bool(True),
   debug_    = cms.bool(False),
   super_TNT = cms.bool(False),
@@ -411,22 +526,38 @@ process.TNT = cms.EDAnalyzer("BSM3G_TNT_Maker",
   jecPayloadNamesAK8PFchsMC2   = cms.FileInPath("BSMFramework/BSM3G_TNT_Maker/data/JEC/MC/Fall17_17Nov2017_V32_MC/Fall17_17Nov2017_V32_MC_L2Relative_AK8PFchs.txt"),
   jecPayloadNamesAK8PFchsMC3   = cms.FileInPath("BSMFramework/BSM3G_TNT_Maker/data/JEC/MC/Fall17_17Nov2017_V32_MC/Fall17_17Nov2017_V32_MC_L3Absolute_AK8PFchs.txt"),
   jecPayloadNamesAK8PFchsMCUnc = cms.FileInPath("BSMFramework/BSM3G_TNT_Maker/data/JEC/MC/Fall17_17Nov2017_V32_MC/Fall17_17Nov2017_V32_MC_Uncertainty_AK8PFchs.txt"),
-   #=== DATA ===
-   jecPayloadNamesAK4PFchsDATA1   = cms.FileInPath(options.optionJECAK4PFchsDATA1),
-   jecPayloadNamesAK4PFchsDATA2   = cms.FileInPath(options.optionJECAK4PFchsDATA2),
-   jecPayloadNamesAK4PFchsDATA3   = cms.FileInPath(options.optionJECAK4PFchsDATA3),
-   jecPayloadNamesAK4PFchsDATA4   = cms.FileInPath(options.optionJECAK4PFchsDATA4),
-   jecPayloadNamesAK4PFchsDATAUnc = cms.FileInPath(options.optionJECAK4PFchsDATAUnc),
-   jecPayloadNamesAK4PFPuppiDATA1   = cms.FileInPath(options.optionJECAK4PFPuppiDATA1),
-   jecPayloadNamesAK4PFPuppiDATA2   = cms.FileInPath(options.optionJECAK4PFPuppiDATA2),
-   jecPayloadNamesAK4PFPuppiDATA3   = cms.FileInPath(options.optionJECAK4PFPuppiDATA3),
-   jecPayloadNamesAK4PFPuppiDATA4   = cms.FileInPath(options.optionJECAK4PFPuppiDATA4),
-   jecPayloadNamesAK4PFPuppiDATAUnc = cms.FileInPath(options.optionJECAK4PFPuppiDATAUnc),
-   jecPayloadNamesAK8PFchsDATA1   = cms.FileInPath(options.optionJECAK8PFchsDATA1),
-   jecPayloadNamesAK8PFchsDATA2   = cms.FileInPath(options.optionJECAK8PFchsDATA2),
-   jecPayloadNamesAK8PFchsDATA3   = cms.FileInPath(options.optionJECAK8PFchsDATA3),
-   jecPayloadNamesAK8PFchsDATA4   = cms.FileInPath(options.optionJECAK8PFchsDATA4),
-   jecPayloadNamesAK8PFchsDATAUnc = cms.FileInPath(options.optionJECAK8PFchsDATAUnc),
+   #=== DATA ===
+
+   jecPayloadNamesAK4PFchsDATA1   = cms.FileInPath(options.optionJECAK4PFchsDATA1),
+
+   jecPayloadNamesAK4PFchsDATA2   = cms.FileInPath(options.optionJECAK4PFchsDATA2),
+
+   jecPayloadNamesAK4PFchsDATA3   = cms.FileInPath(options.optionJECAK4PFchsDATA3),
+
+   jecPayloadNamesAK4PFchsDATA4   = cms.FileInPath(options.optionJECAK4PFchsDATA4),
+
+   jecPayloadNamesAK4PFchsDATAUnc = cms.FileInPath(options.optionJECAK4PFchsDATAUnc),
+
+   jecPayloadNamesAK4PFPuppiDATA1   = cms.FileInPath(options.optionJECAK4PFPuppiDATA1),
+
+   jecPayloadNamesAK4PFPuppiDATA2   = cms.FileInPath(options.optionJECAK4PFPuppiDATA2),
+
+   jecPayloadNamesAK4PFPuppiDATA3   = cms.FileInPath(options.optionJECAK4PFPuppiDATA3),
+
+   jecPayloadNamesAK4PFPuppiDATA4   = cms.FileInPath(options.optionJECAK4PFPuppiDATA4),
+
+   jecPayloadNamesAK4PFPuppiDATAUnc = cms.FileInPath(options.optionJECAK4PFPuppiDATAUnc),
+
+   jecPayloadNamesAK8PFchsDATA1   = cms.FileInPath(options.optionJECAK8PFchsDATA1),
+
+   jecPayloadNamesAK8PFchsDATA2   = cms.FileInPath(options.optionJECAK8PFchsDATA2),
+
+   jecPayloadNamesAK8PFchsDATA3   = cms.FileInPath(options.optionJECAK8PFchsDATA3),
+
+   jecPayloadNamesAK8PFchsDATA4   = cms.FileInPath(options.optionJECAK8PFchsDATA4),
+
+   jecPayloadNamesAK8PFchsDATAUnc = cms.FileInPath(options.optionJECAK8PFchsDATAUnc),
+
   # PILEUP REWEIGHTING
   PUReweightfile      = cms.FileInPath("BSMFramework/BSM3G_TNT_Maker/data/PUReweight/PileUpReweighting2017.root"),
   MinBiasUpReweightfile      = cms.FileInPath("BSMFramework/BSM3G_TNT_Maker/data/PUReweight/PileUpUpReweighting2017.root"),
