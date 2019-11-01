@@ -3,6 +3,7 @@ if __name__ == '__main__':
  ##   Multicrab configuration
  #####
  import sys
+ from multiprocessing import Process
  from CRABClient.UserUtilities import config, getUsernameFromSiteDB
  config = config()
  from CRABAPI.RawCommand import crabCommand
@@ -21,17 +22,18 @@ if __name__ == '__main__':
  ##   Crab configuration
  #####
  datasetnames  = [
-'Fall17V1_SEleBlockB',
-'Fall17V1_SEleBlockC',
-'Fall17V1_SEleBlockD',
-'Fall17V1_SEleBlockE',
-'Fall17V2_SEleBlockF',
-'Fall17V1_SMuBlockB',
-'Fall17V1_SMuBlockC',
-'Fall17V1_SMuBlockD',
-'Fall17V1_SMuBlockE',
-'Fall17V2_SMuBlockF',
+'Legacy17V2_SEleBlockB',
+'Legacy17V2_SEleBlockC',
+'Legacy17V2_SEleBlockD',
+'Legacy17V2_SEleBlockE',
+'Legacy17V2_SEleBlockF',
+'Legacy17V2_SMuBlockB',
+'Legacy17V2_SMuBlockC',
+'Legacy17V2_SMuBlockD',
+'Legacy17V2_SMuBlockE',
+'Legacy17V2_SMuBlockF',
                  ]
+
  datasetinputs = [
  # SingleElectron dataset : AT LEAST 1 high-energy electron in the event.
  '/SingleElectron/Run2017B-31Mar2018-v1/MINIAOD',
@@ -45,104 +47,105 @@ if __name__ == '__main__':
  '/SingleMuon/Run2017D-31Mar2018-v1/MINIAOD',
  '/SingleMuon/Run2017E-31Mar2018-v1/MINIAOD',
  '/SingleMuon/Run2017F-31Mar2018-v1/MINIAOD',
-                ]
+                 ]
 
 JECBlockB = [
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V6_DATA/Fall17_17Nov2017B_V6_DATA_L1FastJet_AK4PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V6_DATA/Fall17_17Nov2017B_V6_DATA_L2Relative_AK4PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V6_DATA/Fall17_17Nov2017B_V6_DATA_L3Absolute_AK4PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V6_DATA/Fall17_17Nov2017B_V6_DATA_L2L3Residual_AK4PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V6_DATA/Fall17_17Nov2017B_V6_DATA_Uncertainty_AK4PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V6_DATA/Fall17_17Nov2017B_V6_DATA_L1FastJet_AK4PFPuppi.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V6_DATA/Fall17_17Nov2017B_V6_DATA_L2Relative_AK4PFPuppi.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V6_DATA/Fall17_17Nov2017B_V6_DATA_L3Absolute_AK4PFPuppi.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V6_DATA/Fall17_17Nov2017B_V6_DATA_L2L3Residual_AK4PFPuppi.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V6_DATA/Fall17_17Nov2017B_V6_DATA_Uncertainty_AK4PFPuppi.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V6_DATA/Fall17_17Nov2017B_V6_DATA_L1FastJet_AK8PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V6_DATA/Fall17_17Nov2017B_V6_DATA_L2Relative_AK8PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V6_DATA/Fall17_17Nov2017B_V6_DATA_L3Absolute_AK8PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V6_DATA/Fall17_17Nov2017B_V6_DATA_L2L3Residual_AK8PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V6_DATA/Fall17_17Nov2017B_V6_DATA_Uncertainty_AK8PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_L1FastJet_AK4PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_L2Relative_AK4PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_L3Absolute_AK4PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_L2L3Residual_AK4PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_Uncertainty_AK4PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_L1FastJet_AK4PFPuppi.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_L2Relative_AK4PFPuppi.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_L3Absolute_AK4PFPuppi.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_L2L3Residual_AK4PFPuppi.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_Uncertainty_AK4PFPuppi.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_L1FastJet_AK8PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_L2Relative_AK8PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_L3Absolute_AK8PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_L2L3Residual_AK8PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017B_V32_DATA/Fall17_17Nov2017B_V32_DATA_Uncertainty_AK8PFchs.txt',
 ]
 
 JECBlockC = [
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V6_DATA/Fall17_17Nov2017C_V6_DATA_L1FastJet_AK4PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V6_DATA/Fall17_17Nov2017C_V6_DATA_L2Relative_AK4PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V6_DATA/Fall17_17Nov2017C_V6_DATA_L3Absolute_AK4PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V6_DATA/Fall17_17Nov2017C_V6_DATA_L2L3Residual_AK4PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V6_DATA/Fall17_17Nov2017C_V6_DATA_Uncertainty_AK4PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V6_DATA/Fall17_17Nov2017C_V6_DATA_L1FastJet_AK4PFPuppi.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V6_DATA/Fall17_17Nov2017C_V6_DATA_L2Relative_AK4PFPuppi.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V6_DATA/Fall17_17Nov2017C_V6_DATA_L3Absolute_AK4PFPuppi.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V6_DATA/Fall17_17Nov2017C_V6_DATA_L2L3Residual_AK4PFPuppi.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V6_DATA/Fall17_17Nov2017C_V6_DATA_Uncertainty_AK4PFPuppi.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V6_DATA/Fall17_17Nov2017C_V6_DATA_L1FastJet_AK8PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V6_DATA/Fall17_17Nov2017C_V6_DATA_L2Relative_AK8PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V6_DATA/Fall17_17Nov2017C_V6_DATA_L3Absolute_AK8PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V6_DATA/Fall17_17Nov2017C_V6_DATA_L2L3Residual_AK8PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V6_DATA/Fall17_17Nov2017C_V6_DATA_Uncertainty_AK8PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V32_DATA/Fall17_17Nov2017C_V32_DATA_L1FastJet_AK4PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V32_DATA/Fall17_17Nov2017C_V32_DATA_L2Relative_AK4PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V32_DATA/Fall17_17Nov2017C_V32_DATA_L3Absolute_AK4PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V32_DATA/Fall17_17Nov2017C_V32_DATA_L2L3Residual_AK4PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V32_DATA/Fall17_17Nov2017C_V32_DATA_Uncertainty_AK4PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V32_DATA/Fall17_17Nov2017C_V32_DATA_L1FastJet_AK4PFPuppi.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V32_DATA/Fall17_17Nov2017C_V32_DATA_L2Relative_AK4PFPuppi.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V32_DATA/Fall17_17Nov2017C_V32_DATA_L3Absolute_AK4PFPuppi.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V32_DATA/Fall17_17Nov2017C_V32_DATA_L2L3Residual_AK4PFPuppi.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V32_DATA/Fall17_17Nov2017C_V32_DATA_Uncertainty_AK4PFPuppi.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V32_DATA/Fall17_17Nov2017C_V32_DATA_L1FastJet_AK8PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V32_DATA/Fall17_17Nov2017C_V32_DATA_L2Relative_AK8PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V32_DATA/Fall17_17Nov2017C_V32_DATA_L3Absolute_AK8PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V32_DATA/Fall17_17Nov2017C_V32_DATA_L2L3Residual_AK8PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017C_V32_DATA/Fall17_17Nov2017C_V32_DATA_Uncertainty_AK8PFchs.txt',
 ]
 
 JECBlockD = [
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017D_V6_DATA/Fall17_17Nov2017D_V6_DATA_L1FastJet_AK4PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017D_V6_DATA/Fall17_17Nov2017D_V6_DATA_L2Relative_AK4PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017D_V6_DATA/Fall17_17Nov2017D_V6_DATA_L3Absolute_AK4PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017D_V6_DATA/Fall17_17Nov2017D_V6_DATA_L2L3Residual_AK4PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017D_V6_DATA/Fall17_17Nov2017D_V6_DATA_Uncertainty_AK4PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017D_V6_DATA/Fall17_17Nov2017D_V6_DATA_L1FastJet_AK4PFPuppi.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017D_V6_DATA/Fall17_17Nov2017D_V6_DATA_L2Relative_AK4PFPuppi.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017D_V6_DATA/Fall17_17Nov2017D_V6_DATA_L3Absolute_AK4PFPuppi.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017D_V6_DATA/Fall17_17Nov2017D_V6_DATA_L2L3Residual_AK4PFPuppi.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017D_V6_DATA/Fall17_17Nov2017D_V6_DATA_Uncertainty_AK4PFPuppi.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017D_V6_DATA/Fall17_17Nov2017D_V6_DATA_L1FastJet_AK8PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017D_V6_DATA/Fall17_17Nov2017D_V6_DATA_L2Relative_AK8PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017D_V6_DATA/Fall17_17Nov2017D_V6_DATA_L3Absolute_AK8PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017D_V6_DATA/Fall17_17Nov2017D_V6_DATA_L2L3Residual_AK8PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017D_V6_DATA/Fall17_17Nov2017D_V6_DATA_Uncertainty_AK8PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_L1FastJet_AK4PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_L2Relative_AK4PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_L3Absolute_AK4PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_L2L3Residual_AK4PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_Uncertainty_AK4PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_L1FastJet_AK4PFPuppi.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_L2Relative_AK4PFPuppi.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_L3Absolute_AK4PFPuppi.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_L2L3Residual_AK4PFPuppi.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_Uncertainty_AK4PFPuppi.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_L1FastJet_AK8PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_L2Relative_AK8PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_L3Absolute_AK8PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_L2L3Residual_AK8PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_Uncertainty_AK8PFchs.txt',
 ]
 
 JECBlockE = [
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017E_V6_DATA/Fall17_17Nov2017E_V6_DATA_L1FastJet_AK4PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017E_V6_DATA/Fall17_17Nov2017E_V6_DATA_L2Relative_AK4PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017E_V6_DATA/Fall17_17Nov2017E_V6_DATA_L3Absolute_AK4PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017E_V6_DATA/Fall17_17Nov2017E_V6_DATA_L2L3Residual_AK4PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017E_V6_DATA/Fall17_17Nov2017E_V6_DATA_Uncertainty_AK4PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017E_V6_DATA/Fall17_17Nov2017E_V6_DATA_L1FastJet_AK4PFPuppi.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017E_V6_DATA/Fall17_17Nov2017E_V6_DATA_L2Relative_AK4PFPuppi.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017E_V6_DATA/Fall17_17Nov2017E_V6_DATA_L3Absolute_AK4PFPuppi.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017E_V6_DATA/Fall17_17Nov2017E_V6_DATA_L2L3Residual_AK4PFPuppi.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017E_V6_DATA/Fall17_17Nov2017E_V6_DATA_Uncertainty_AK4PFPuppi.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017E_V6_DATA/Fall17_17Nov2017E_V6_DATA_L1FastJet_AK8PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017E_V6_DATA/Fall17_17Nov2017E_V6_DATA_L2Relative_AK8PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017E_V6_DATA/Fall17_17Nov2017E_V6_DATA_L3Absolute_AK8PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017E_V6_DATA/Fall17_17Nov2017E_V6_DATA_L2L3Residual_AK8PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017E_V6_DATA/Fall17_17Nov2017E_V6_DATA_Uncertainty_AK8PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_L1FastJet_AK4PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_L2Relative_AK4PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_L3Absolute_AK4PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_L2L3Residual_AK4PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_Uncertainty_AK4PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_L1FastJet_AK4PFPuppi.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_L2Relative_AK4PFPuppi.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_L3Absolute_AK4PFPuppi.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_L2L3Residual_AK4PFPuppi.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_Uncertainty_AK4PFPuppi.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_L1FastJet_AK8PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_L2Relative_AK8PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_L3Absolute_AK8PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_L2L3Residual_AK8PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017DE_V32_DATA/Fall17_17Nov2017DE_V32_DATA_Uncertainty_AK8PFchs.txt',
 ]
 
 JECBlockF = [
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V6_DATA/Fall17_17Nov2017F_V6_DATA_L1FastJet_AK4PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V6_DATA/Fall17_17Nov2017F_V6_DATA_L2Relative_AK4PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V6_DATA/Fall17_17Nov2017F_V6_DATA_L3Absolute_AK4PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V6_DATA/Fall17_17Nov2017F_V6_DATA_L2L3Residual_AK4PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V6_DATA/Fall17_17Nov2017F_V6_DATA_Uncertainty_AK4PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V6_DATA/Fall17_17Nov2017F_V6_DATA_L1FastJet_AK4PFPuppi.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V6_DATA/Fall17_17Nov2017F_V6_DATA_L2Relative_AK4PFPuppi.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V6_DATA/Fall17_17Nov2017F_V6_DATA_L3Absolute_AK4PFPuppi.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V6_DATA/Fall17_17Nov2017F_V6_DATA_L2L3Residual_AK4PFPuppi.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V6_DATA/Fall17_17Nov2017F_V6_DATA_Uncertainty_AK4PFPuppi.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V6_DATA/Fall17_17Nov2017F_V6_DATA_L1FastJet_AK8PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V6_DATA/Fall17_17Nov2017F_V6_DATA_L2Relative_AK8PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V6_DATA/Fall17_17Nov2017F_V6_DATA_L3Absolute_AK8PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V6_DATA/Fall17_17Nov2017F_V6_DATA_L2L3Residual_AK8PFchs.txt',
-'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V6_DATA/Fall17_17Nov2017F_V6_DATA_Uncertainty_AK8PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V32_DATA/Fall17_17Nov2017F_V32_DATA_L1FastJet_AK4PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V32_DATA/Fall17_17Nov2017F_V32_DATA_L2Relative_AK4PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V32_DATA/Fall17_17Nov2017F_V32_DATA_L3Absolute_AK4PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V32_DATA/Fall17_17Nov2017F_V32_DATA_L2L3Residual_AK4PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V32_DATA/Fall17_17Nov2017F_V32_DATA_Uncertainty_AK4PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V32_DATA/Fall17_17Nov2017F_V32_DATA_L1FastJet_AK4PFPuppi.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V32_DATA/Fall17_17Nov2017F_V32_DATA_L2Relative_AK4PFPuppi.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V32_DATA/Fall17_17Nov2017F_V32_DATA_L3Absolute_AK4PFPuppi.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V32_DATA/Fall17_17Nov2017F_V32_DATA_L2L3Residual_AK4PFPuppi.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V32_DATA/Fall17_17Nov2017F_V32_DATA_Uncertainty_AK4PFPuppi.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V32_DATA/Fall17_17Nov2017F_V32_DATA_L1FastJet_AK8PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V32_DATA/Fall17_17Nov2017F_V32_DATA_L2Relative_AK8PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V32_DATA/Fall17_17Nov2017F_V32_DATA_L3Absolute_AK8PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V32_DATA/Fall17_17Nov2017F_V32_DATA_L2L3Residual_AK8PFchs.txt',
+'BSMFramework/BSM3G_TNT_Maker/data/JEC/DATA/Fall17_17Nov2017F_V32_DATA/Fall17_17Nov2017F_V32_DATA_Uncertainty_AK8PFchs.txt',
 ]
 
 
+# baseDir
+baseDir = "/afs/cern.ch/work/m/mpresill/CMSSW_10_2_16_UL/src/BSMFramework/"
 
 goodRunsLists = [
-'/afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/certification/Collisions17/13TeV/ReReco/Cert_294927-306462_13TeV_EOY2017ReReco_Collisions17_JSON.txt'
+(baseDir+'BSM3G_TNT_Maker/data/JSON/Cert_294927-306462_13TeV_EOY2017ReReco_Collisions17_JSON_v1.txt'),
 ]
-
 
 for d in range(0,len(datasetnames)):
 #for d in range(10,len(datasetnames)):
@@ -171,15 +174,6 @@ for d in range(0,len(datasetnames)):
         print 'multicrab.py: Run Block F'
         JECFiles = JECBlockF
         tempJSON = goodRunsLists[0]
-    if 'BlockG' in datasetnames[d]:
-        print 'multicrab.py: Run Block G'
-        JECFiles = JECBlockF
-        tempJSON = goodRunsLists[0]
-    if 'BlockH' in datasetnames[d]:
-        print 'multicrab.py: Run Block H'
-        JECFiles = JECBlockF
-        tempJSON = goodRunsLists[0]
-  
 
     print 'multicrab.py: JSON File = ', tempJSON
     try:
@@ -218,8 +212,8 @@ for d in range(0,len(datasetnames)):
     config.section_('JobType')
     config.JobType.pluginName  = 'Analysis'
     # List of parameters to pass to CMSSW parameter-set configuration file:
-    config.JobType.psetName    = '/afs/cern.ch/work/m/mpresill/CMSSW_10_2_16_UL/src/BSMFramework/BSM3G_TNT_Maker/python/miniAOD_RD2017.py'
-    config.JobType.inputFiles = ['/afs/cern.ch/work/m/mpresill/CMSSW_10_2_16_UL/src/BSMFramework/BSM3G_TNT_Maker/data/QG/QGL_AK4chs_94X.db']
+    config.JobType.psetName    = baseDir+'BSM3G_TNT_Maker/python/miniAOD_RD2017.py'
+    config.JobType.inputFiles = [(baseDir+'BSM3G_TNT_Maker/data/QG/QGL_AK4chs_94X.db')]
     config.JobType.allowUndistributedCMSSW = True
     config.JobType.sendExternalFolder = True
     ofParam = 'ofName=' + datasetnames[d]
@@ -246,11 +240,19 @@ for d in range(0,len(datasetnames)):
     config.Data.inputDBS       = 'global'
     config.Data.splitting      = 'LumiBased'
     config.Data.unitsPerJob    = 30
+    #config.Data.splitting      = 'Automatic'
+    #config.Data.unitsPerJob    = 180
     # Golden
     config.Data.lumiMask       = tempJSON
     config.General.instance = 'prod'
+    #config.Data.outLFNDirBase = '/store/user/binghuan/'
+    #print 'multicrab.py: outLFNDirBase = /store/user/binghuan/'
+    #config.Data.publication = True
 
     config.section_('Site')
     config.Site.storageSite    = 'T2_IT_Legnaro'#'T2_CH_CERN'
     print 'multicrab.py: Submitting Jobs'
-    submit(config)
+    #submit(config)
+    p = Process(target=submit, args=(config,))
+    p.start()
+    p.join()
