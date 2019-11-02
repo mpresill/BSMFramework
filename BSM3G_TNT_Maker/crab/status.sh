@@ -1,13 +1,13 @@
-crab status -d 
-crab status -d 
-crab status -d 
-crab status -d 
-crab status -d 
-crab status -d 
-crab status -d 
-crab status -d 
-crab status -d 
-crab status -d 
+crab status -d Legacy17V2_SEleBlockB/crab_Legacy17V2_SEleBlockB
+crab status -d Legacy17V2_SEleBlockC/crab_Legacy17V2_SEleBlockC
+crab status -d Legacy17V2_SEleBlockD/crab_Legacy17V2_SEleBlockD
+crab status -d Legacy17V2_SEleBlockE/crab_Legacy17V2_SEleBlockE
+crab status -d Legacy17V2_SEleBlockF/crab_Legacy17V2_SEleBlockF
+crab status -d Legacy17V2_SMuBlockB/crab_Legacy17V2_SMuBlockB
+crab status -d Legacy17V2_SMuBlockC/crab_Legacy17V2_SMuBlockC
+crab status -d Legacy17V2_SMuBlockD/crab_Legacy17V2_SMuBlockD
+crab status -d Legacy17V2_SMuBlockE/crab_Legacy17V2_SMuBlockE
+crab status -d Legacy17V2_SMuBlockF/crab_Legacy17V2_SMuBlockF
 
 crab status -d crab_projects_17/crab_Fall17V2_DY1
 crab status -d crab_projects_17/crab_Fall17V2_DY2
