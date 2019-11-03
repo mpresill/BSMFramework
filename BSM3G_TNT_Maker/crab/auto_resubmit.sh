@@ -4,7 +4,7 @@ for filename in crab_projects_17/*; do
   crab resubmit $filename
 done
 
-for filename_Data in Fall17V*/*; do
+for filename_Data in Legacy17V*/*; do
   echo $filename_Data
   crab resubmit $filename_Data
 done
