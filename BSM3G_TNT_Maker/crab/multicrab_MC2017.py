@@ -304,10 +304,10 @@ for d in range(0,len(datasetnames)):
     config.Data.allowNonValidInputDataset = True
     config.Data.inputDataset   = datasetinputs[d]
     config.Data.inputDBS       = 'global'
-    config.Data.splitting      = 'FileBased'
-    #config.Data.splitting      = 'Automatic'
-    config.Data.totalUnits     = 4000 #With 'FileBased' splitting tells how many files to analyse
-    config.Data.unitsPerJob    = 1
+    #config.Data.splitting      = 'FileBased'
+    config.Data.splitting      = 'Automatic'
+    #config.Data.totalUnits     = 4000 #With 'FileBased' splitting tells how many files to analyse
+    config.Data.unitsPerJob    = 180
     config.Data.outputDatasetTag = datasetnames[d]
 
     #config.Data.publication = True
